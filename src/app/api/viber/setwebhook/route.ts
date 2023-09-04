@@ -7,6 +7,6 @@ export async function POST(request: Request) {
 }
 
 export async function GET(request: Request) {
-  const res = await realTalkBot.setWebhook(process.env.WEBHOOK_URL as string);
+  // const res = await realTalkBot.setWebhook(process.env.WEBHOOK_URL as string);
   return NextResponse.json({ msg: 'LETS TRY' });
 }
