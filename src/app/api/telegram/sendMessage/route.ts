@@ -7,7 +7,10 @@ export async function POST(request: Request) {
   if (!message)
     return NextResponse.json({ message: 'There was no message in body' });
 
-  const res = await realTalkBot.sendMessage(groupChatId, message);
+  const res = await realTalkBot.sendMessage(
+    groupChatId,
+    'Question: ' + message
+  );
 
   return NextResponse.json({ res });
 }
