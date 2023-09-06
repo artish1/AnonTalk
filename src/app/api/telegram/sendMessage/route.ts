@@ -7,10 +7,16 @@ export async function POST(request: Request) {
   if (!message)
     return NextResponse.json({ message: 'There was no message in body' });
 
-  const res = await realTalkBot.sendMessage(
-    groupChatId,
-    'Question: ' + message
-  );
+  let res;
+  try {
+    res = await realTalkBot.sendMessage(groupChatId, 'Question: ' + message);
+  } catch (err) {
+    console.log('ERROR: ', err);
+    return NextResponse.json({
+      err,
+      message: 'There was an error sending a message to Telegram',
+    });
+  }
 
   return NextResponse.json({ res });
 }
